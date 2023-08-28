@@ -1,0 +1,196 @@
+
+<!DOCTYPE html><html><head><title>9% Cannon</title><link rel="shortcut icon" href="../favicon.ico"><meta name="referrer" content="strict-origin-when-cross-origin"><script nonce="-MRl2YaVf3aH4fzSNlsU6g">
+    var DOCS_timing = {};
+    var DOCS_drawing_load = {};
+    var DOCS_drawing_decode = {};
+
+    function _DOCS_record_fn(id) {
+      if (window.performance && window.performance.now) {
+        DOCS_drawing_load[id] = performance.now();
+        const imgEl = document.getElementById(id);
+        if (imgEl && imgEl.decode) {
+          imgEl.decode().then(() => DOCS_drawing_decode[id] = performance.now());
+        }
+      }
+
+      if (typeof DOCS_notifyDrawingImpressions === 'function') {
+        DOCS_notifyDrawingImpressions(id);
+      }
+    }
+
+    function DOCS_record_drawing_load(id) {
+      const imgEl = document.getElementById(id);
+      if (imgEl.complete) {
+        _DOCS_record_fn(id);
+      }
+      imgEl.onload = function() {
+        _DOCS_record_fn(id);
+      }
+    }
+
+    document.documentElement.addEventListener(
+      'load',
+      function(event) {
+        if (!event || !event.target) {
+          return;
+        }
+        const target = event.target;
+
+        if (target.tagName == 'IMG' &&  target.id && target.id.startsWith('ed.')) {
+          DOCS_record_drawing_load(target.id);
+        }
+      },
+      // Captures load events in the DOM because they do not bubble.
+      /* useCapture= */ true
+    );
+  </script><style nonce="spKNznmOItBC2S4JkMzLZg">
+  @import url("https://fonts.googleapis.com/css?family=Google+Sans");
+  @import url("https://fonts.googleapis.com/css?family=Roboto");
+
+  body {
+    font-family: Roboto, arial, sans, sans-serif;
+    margin: 0;
+    background-color:#33363d;
+  }
+
+  iframe {
+    border: 0;
+    frameborder: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  #banners {
+    align-items: center;
+    background: white;
+    display: block;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+  }
+
+  #banners #publish-banner {
+    background-color: #e8f0fe;
+    border-bottom: 1px #ccc solid;
+    color: #202124;
+    display: flex;
+    flex: 1 1 0%;
+    height: 60px;
+    width: 100%;
+  }
+
+  #publish-banner-icon {
+    display: flex;
+    fill: #1967d2;
+    margin: auto 20px;
+  }
+
+  #publish-banner-text {
+    flex-grow: 1;
+    margin: auto 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  #publish-banner-buttons {
+    margin: auto 25px auto 0;
+    white-space: nowrap;
+  }
+
+  #publish-banner-buttons span {
+    align-self: center;
+    background-color: inherit;
+    border: none;
+    font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+    margin: 0 16px 0 32px;
+  }
+
+  #publish-banner-buttons a {
+    color: #1967d2;
+    cursor: pointer;
+    font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    text-decoration: none;
+  }
+
+  #banners #title-banner {
+    background: white;
+    border-bottom: 1px #ccc solid;
+    display: flex;
+    flex: 1 1 0%;
+    height: 60px;
+    width: 100%;
+  }
+
+  #banners #title-banner #title {
+    flex-grow: 1;
+    font-family: 'Google Sans';
+    font-size: large;
+    margin: auto 0 auto 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 70%;
+  }
+
+  #banners #title-banner #interval {
+    margin: auto 25px auto 0;
+    font-family: Roboto;
+    font-size: small;;
+  }
+
+  #footer {
+    background: #f0f0f0;
+    border-bottom: 1px #ccc solid;
+    bottom: 0;
+    font-family: Roboto;
+    font-size: small;
+    padding: 10px 10px;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+  }
+
+  @media only screen and (max-device-width: 800px) {
+    #banners #title-banner {
+      border-bottom-width: 5px;
+      height: auto;
+      display: block;
+    }
+
+    #banners #title-banner #title {
+      font-size: 3em;
+      margin: auto 0 auto 20px;
+      width: 90%;
+    }
+
+    #banners #title-banner #interval {
+      font-size: 1.5em;
+      margin: 10px 0 auto 25px;
+    }
+
+    #footer {
+      font-size: 2em;
+    }
+  }
+
+  .dash {
+    padding: 0 6px;
+  }
+
+
+    #contents {
+      padding: 0px 20% 50px 20%;
+    }
+
+    @media only screen and (max-device-width: 800px) {
+      #contents {
+        padding: 150px 5% 80px;
+      }
+    }
+  </style></head><body><div id="contents"><style type="text/css">@import url(https://themes.googleusercontent.com/fonts/css?kit=-lTUqgJg2dxbe4D7B5DEIA3jn2WilaVUapNOYl4762s);.lst-kix_bkh1ty46hevs-0>li:before{content:"-  "}.lst-kix_bkh1ty46hevs-1>li:before{content:"-  "}.lst-kix_bkh1ty46hevs-8>li:before{content:"-  "}li.li-bullet-0:before{margin-left:-18pt;white-space:nowrap;display:inline-block;min-width:18pt}ul.lst-kix_bkh1ty46hevs-6{list-style-type:none}.lst-kix_bkh1ty46hevs-4>li:before{content:"-  "}.lst-kix_bkh1ty46hevs-5>li:before{content:"-  "}ul.lst-kix_bkh1ty46hevs-7{list-style-type:none}ul.lst-kix_bkh1ty46hevs-8{list-style-type:none}.lst-kix_bkh1ty46hevs-2>li:before{content:"-  "}.lst-kix_bkh1ty46hevs-3>li:before{content:"-  "}.lst-kix_bkh1ty46hevs-6>li:before{content:"-  "}.lst-kix_bkh1ty46hevs-7>li:before{content:"-  "}ul.lst-kix_bkh1ty46hevs-0{list-style-type:none}ul.lst-kix_bkh1ty46hevs-1{list-style-type:none}ul.lst-kix_bkh1ty46hevs-2{list-style-type:none}ul.lst-kix_bkh1ty46hevs-3{list-style-type:none}ul.lst-kix_bkh1ty46hevs-4{list-style-type:none}ul.lst-kix_bkh1ty46hevs-5{list-style-type:none}ol{margin:0;padding:0}table td,table th{padding:0}.c0{color:#ffffff;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:12pt;font-family:"Montserrat";font-style:normal}.c7{color:#ffffff;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:16pt;font-family:"Montserrat";font-style:normal}.c16{color:#ffffff;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:24pt;font-family:"Montserrat";font-style:normal}.c12{color:#ffffff;font-weight:700;text-decoration:none;vertical-align:baseline;font-size:16pt;font-family:"Montserrat";font-style:normal}.c2{color:#ffffff;font-weight:700;text-decoration:none;vertical-align:baseline;font-size:18pt;font-family:"Montserrat";font-style:normal}.c6{color:#ffffff;font-weight:700;text-decoration:none;vertical-align:baseline;font-size:35pt;font-family:"Montserrat";font-style:normal}.c5{padding-top:0pt;padding-bottom:0pt;line-height:1.15;orphans:2;widows:2;text-align:left}.c11{padding-top:0pt;padding-bottom:0pt;line-height:1.15;orphans:2;widows:2;text-align:center}.c1{font-size:12pt;font-family:"Montserrat";color:#ffffff;font-weight:400}.c9{margin-left:36pt;text-indent:-18pt;height:12pt}.c10{font-weight:400;font-size:12pt;font-family:"Montserrat"}.c21{background-color:#33363d;max-width:451.4pt;padding:72pt 72pt 72pt 72pt}.c20{-webkit-text-decoration-skip:none;text-decoration:line-through;text-decoration-skip-ink:none}.c4{-webkit-text-decoration-skip:none;text-decoration:underline;text-decoration-skip-ink:none}.c8{margin-left:36pt;padding-left:0pt}.c22{margin-left:36pt;text-indent:-18pt}.c13{color:inherit;text-decoration:inherit}.c15{margin-left:18pt;height:12pt}.c3{padding:0;margin:0}.c18{margin-left:72pt;padding-left:0pt}.c14{page-break-after:avoid}.c17{font-weight:700}.c19{height:12pt}.c23{font-style:italic}.title{padding-top:0pt;color:#ffffff;font-weight:700;font-size:35pt;padding-bottom:0pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:center}.subtitle{padding-top:0pt;color:#ffffff;font-size:24pt;padding-bottom:0pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:center}li{color:#ffffff;font-size:12pt;font-family:"Montserrat"}p{margin:0;color:#ffffff;font-size:12pt;font-family:"Montserrat"}h1{padding-top:0pt;color:#ffffff;font-weight:700;font-size:18pt;padding-bottom:0pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h2{padding-top:0pt;color:#ffffff;font-weight:700;font-size:16pt;padding-bottom:0pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h3{padding-top:16pt;color:#434343;font-size:14pt;padding-bottom:4pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h4{padding-top:14pt;color:#666666;font-size:12pt;padding-bottom:4pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h5{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h6{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;font-style:italic;orphans:2;widows:2;text-align:left}</style><div class="c21 doc-content"><p class="c11 c22 c14 title" id="h.9ooaj0u1tfl2"><span class="c17">9% Cannon</span><span class="c6"> </span></p><p class="c11 c14 c22 subtitle" id="h.b3eejq7opjh8"><span class="c16">TD/C-Spin Opener</span></p><p class="c5 c9"><span class="c0"></span></p><p class="c5"><span class="c1">9% Cannon is a TD opener which has a good 8-height PC chance. It was</span><span> </span><span class="c1">first documented </span><span class="c1 c4"><a class="c13" href="https://www.google.com/url?q=https://w.atwiki.jp/sioyakitetrisopener/pages/126.html&amp;sa=D&amp;source=editors&amp;ust=1693214907062336&amp;usg=AOvVaw0dIESbC23RCKr8uKwa-O0y">here</a></span><span class="c1"> </span><span class="c1">as a TD opener with only a 1/11 chance of having to stack a compromise setup (hence 9% Cannon), without being given a proper name. (No, I will not accept 1/11th compromise cann</span><span class="c0">on as a proper name.) </span></p><p class="c5 c19"><span class="c0"></span></p><p class="c5"><span class="c4 c10"><a class="c13" href="https://www.google.com/url?q=https://fumen.zui.jp/?v115@9gh0Heg0RpDewwglAeg0RpAeBtxwglAezhAeBtwwhl?JeAgWWATymrDFbUfDhNVTASoaaEFbcYCTdAAAvhBPbQlACA?3TASIc5DU988AQ%2BbrDFbssCFbkOEpYQrDFbkOEsSQrDEBAA?AAAPAAqgwhIexhGehlwhGeglxwDeQpg0AeglxwAeBtRpg0A?eT4AeBtQph0JeAAAfgh0RpFeg0AeRpBeglQ4Beg0EeglR4w?hDeBthlQ4whEeBtBewhIewhTeAAPqARYcRAyv78AQzY5DM3?88AQL0dEloo2A3u%2B1DFb85AYo78Aw8N5Du9BAAvhBtlQAAA?AA9ghlxwFeglAexwBeg0whBeglEeg0xhQ4TeAAAzgzhh0Q4?ilDeg0R4glRpDeg0Q4BeRpCeywHewwOeAAP7BZBgRB3ngHB?FbkiCDoo2AD9jJEj488ADoo2ARYcRAyv78AwNXTASYtSASo?saEFb82Duoo2AmOCbE0oo2AUNyrDloo2Aw%2BkkDlN98AwWXT?ASY91Dloo2AU9VXEkoo2AiSZTAyE88AwN88Awd0TAS414D4?oaCA&amp;sa=D&amp;source=editors&amp;ust=1693214907063274&amp;usg=AOvVaw0GDCMpQ1ZtbHdcYtWAlqR6">Fumen</a></span><span class="c0"> </span></p><p class="c5 c9"><span class="c0"></span></p><h1 class="c5 c14" id="h.l7om8bvqlgo"><span class="c2">First Bag </span></h1><p class="c5 c9"><span class="c0"></span></p><p class="c5"><span class="c0">The first bag resembles Mountainous Stacking 3 and Dot Cannon: </span></p><p class="c11"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 220.00px;"><img alt="" src="https://lh6.googleusercontent.com/4JhuMnUUqdC7CWJZ8S9nd2ROObt03MGSuRajefUeB_IDZLHEYAWJKR8gBq52Ty_OyDOMw6XzdxgWPHku2wZNz1uePMrNl0P_8deElT4A1RKngIpqUVf9C6ZAGoyJQHIeoyprOOHvs_x96kvVWU6vE3I" style="width: 220.00px; height: 220.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c5 c9"><span class="c0"></span></p><p class="c5"><span class="c0">In fact, it is the same shape as MS3 if you remove the S piece: </span></p><p class="c11"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 220.00px;"><img alt="" src="https://lh4.googleusercontent.com/uSYKgLAJxiKMxzsjq1VrG9QFEFUJHL-H-RYtOnUmCewC1ym45YjDUFnnclKCYDBPfmo5O6oQqLWdkccyVNQ4ThcLCE-eq5ogSL0JeXPDsCgaSh6zla8HJMaZfo7zS9--p92T0zrruhBWNM72y7GPaWo" style="width: 220.00px; height: 220.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c5"><span class="c0">The first bag can be built 50% of the time, 60% including mirror. </span></p><p class="c5 c9"><span class="c0"></span></p><h1 class="c5 c14" id="h.7q5so71eotfp"><span class="c2">Second Bag </span></h1><p class="c5 c9"><span class="c0"></span></p><p class="c5"><span class="c0">Usually the second bag is built as the completion and execution of the TD. There are two main routes. </span></p><p class="c5 c9"><span class="c7"></span></p><h2 class="c5 c14" id="h.k2sitk8r6dnh"><span class="c12">Route 1 (100% cover)</span></h2><p class="c5 c19"><span class="c0"></span></p><p class="c11"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 220.00px;"><img alt="" src="https://lh3.googleusercontent.com/fxMAzwhoYf31zvaupqEPFfI8W3ccwapGGyy0loYY87obSdSJqhAQdPsjDIQokx6DzizWLNNirNgt84KGyq_j71ph9dO64-keNVnHIFMnOZEt5zE98vp3rhwML4O5pAb50wz_-ZFtKKHUEDYaec8YwZQ" style="width: 220.00px; height: 220.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c5"><span class="c0">This setup is always possible with 180 spins. If you don’t have 180 spins, then this opener isn’t really for you. </span></p><p class="c5 c9"><span class="c0"></span></p><h2 class="c5 c14" id="h.splgqdu077po"><span class="c12">Route 2 (66.67% cover, L -&gt; S) </span></h2><p class="c5 c9"><span class="c12"></span></p><p class="c11"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 240.00px;"><img alt="" src="https://lh5.googleusercontent.com/A2wjm8ZG0ZXWZeVu8bQfCI_65DAu_DsKgAYGc2LTw1NKclO1redRAFH_9mXaC7WeHqQZMaR-3gQSsuwiZBiuIbWNJbY1QzqWQyfqTNwxXuD26M10XwRkO7vlnUCeDHAgFFN-yBmrvc0BW22C8l6Cdvc" style="width: 220.00px; height: 240.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c5"><span class="c0">This setup offers the best PC chance. </span></p><p class="c5 c9"><span class="c0"></span></p><p class="c5 c9"><span class="c0"></span></p><p class="c5 c9"><span class="c0"></span></p><p class="c5 c9"><span class="c0"></span></p><p class="c5"><span class="c0">However if they are really mean the player may also opt for a centre 4-wide setup, with 6 residue: </span></p><p class="c5 c9"><span class="c0"></span></p><p class="c11"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 260.00px;"><img alt="" src="https://lh3.googleusercontent.com/MWj55Zot1jFjovSgDZNbgfN7tu4rZD7mEpMQJ0sy4ci60LVU76T1zO9Fpg-BVowKLzNQQ5PgRqgSbzpTo8OGn-F56SvpqHpPrkUkfRXvDn4nsgJ3E5_BEvZs3gQycx6_RBpxe05xxPRBaULBSKNdvMI" style="width: 220.00px; height: 260.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c5 c9"><span class="c0"></span></p><hr style="page-break-before:always;display:none;"><p class="c5 c9"><span class="c0"></span></p><h1 class="c5 c14" id="h.onlyy1geclv0"><span class="c2">Route 1 Third Bag </span></h1><p class="c5 c9"><span class="c0"></span></p><p class="c5"><span class="c0">Assuming that the player went with the first route, they will be left with this residue: </span></p><p class="c5 c15"><span class="c0"></span></p><p class="c11"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 220.00px;"><img alt="" src="https://lh4.googleusercontent.com/KfQRRaJAqnfayUej55EFUolBUaFSESR2uhnwdiedPGVdwj-z18Rnt24LHxsaQ7KX_LJW5xgwtvpJ67uwMW4s3l8W-GV5AOj758WnILfjk4XWIjvrlLdzujjoZJ4Ian4rHJWK0Jeuf040aMrMOh4zabw" style="width: 220.00px; height: 220.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c5 c9"><span class="c0"></span></p><p class="c5"><span class="c1">This residue has a 96.87% PC chance, which rises to 100% if the T piece is one of the first three pieces in the third bag. The I piece is fixed at the top-left. Most of the solutions have the T piece in the T-Spin slot and a double </span><span class="c1 c4"><a class="c13" href="https://www.google.com/url?q=https://harddrop.com/wiki/Interchangeable_Shapes%23Chiptooth%252FHearts&amp;sa=D&amp;source=editors&amp;ust=1693214907066766&amp;usg=AOvVaw2N-zBeC8bnNofF6_B6cEz3">heart</a></span><span class="c0"> pattern above. Example: </span></p><p class="c11"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 180.00px;"><img alt="" src="https://lh3.googleusercontent.com/7ZcGq1tZzBnbcXdog5FO8ielaiEDxNEClUVHQqtTpG0WQNLoUaTTu9ouTOH2VM9OfMaLd6vIgO7LbHd-mp1FGuCLbeUPYCmRd6Qr9P2YUPwR7QSv8Ntgnw4YRYrcjJRworpClkPMw4F9Skt3-RnsXH8" style="width: 220.00px; height: 180.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c5"><span class="c1">There are </span><span class="c1 c4"><a class="c13" href="https://www.google.com/url?q=https://fumen.zui.jp/?v115@zgzhh0AtilD8g0BtglRpD8g0AtB8RpC8ywH8wwE8Je?AgWGAUnzPCM%2BAAAzgzhi0Q4hlD8Rpg0R4glD8RpB8Q4glC8?ywH8wwE8JeAAPGAU3TWCK%2BAAAzgzhili0D8glR4Btg0D8R4?B8BtC8ywH8wwE8JeAAPGA0HkPCM%2BAAAzgzhilRpg0D8glR4?Rpg0D8R4B8h0C8ywH8wwE8JeAAPGAUtHgCM%2BAAAzgzhh0At?Q4hlD8g0BtR4glD8g0AtB8Q4glC8ywH8wwE8JeAAPGAUNUF?DK%2BAAAzgzhglRpi0D8glRpBtg0D8hlB8BtC8ywH8wwE8JeA?APGA0XMgCK%2BAAAzgzhg0R4BtglD8i0ilD8R4B8BtC8ywH8w?wE8JeAAPGA0iPFDT%2BAAAzgzhg0R4ilD8i0glRpD8R4B8RpC?8ywH8wwE8JeAAPGAUn/VCT%2BAAAzgzhRpgli0D8ilBtg0D8R?pB8BtC8ywH8wwE8JeAAPGA0XUPCP%2BAAAzgzhh0AtilD8g0B?tglRpD8R4B8RpC8R4AtH8g0E8JeAAPGATnzPCM%2BAAAzgzhi?lRpg0D8ywRpg0D8R4B8h0C8R4wwH8glE8JeAAPGAz/dgCM%2B?AAAzgzhili0D8ywBtg0D8R4B8BtC8R4wwH8glE8JeAAPGAz?XmPCM%2BAAAzgzhwwRpi0D8Q4RpBtg0D8R4B8BtC8xwQ4H8ww?E8JeAAPGAa9aPCU%2BAAAzgzhwwRpBtglD8Q4RpilD8R4B8Bt?C8xwQ4H8wwE8JeAAPGAzyaFDU%2BAAA&amp;sa=D&amp;source=editors&amp;ust=1693214907067677&amp;usg=AOvVaw1xdZl1pQZhlKo5FnPxVTQs">14 minimals</a></span><span class="c0">. </span></p><p class="c5 c9"><span class="c0"></span></p><p class="c5"><span class="c1">If you can’t do the PC or you received garbage, just take the T-Spin and continue with 4-5 stacking. </span><span class="c1 c4"><a class="c13" href="https://www.google.com/url?q=https://fumen.zui.jp/?v115@9gD8FeD8BeB8BeC8CeH8AeE8JeAgHvhBFrBAAA2gR4?GeR4EeglzhAeBtilFeBtRpHeRpJeAAAxgQ4Ceg0QawDCeR4?BeQawDAezhwwRawwQaAeAPIeAtAegWGeAtNeAAALgwhIewh?GeQ4Aewhg0BeBtBeR4whg0CeBtglwhQ4h0hlAeilxhRpglB?eT4whRpglCeAti0EeBtg0xwEeAtBexwJeAAA&amp;sa=D&amp;source=editors&amp;ust=1693214907068249&amp;usg=AOvVaw0nba58gwC_001DLhgcbp7H">STSD or DT Cannon setups</a></span><span class="c0"> are also possible. </span></p><hr style="page-break-before:always;display:none;"><p class="c5 c9"><span class="c0"></span></p><p class="c5"><span class="c0">There’s also this followup as long as S &gt; L (SL and JO can be swapped): </span></p><p class="c11"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 198.00px; height: 216.00px;"><img alt="" src="https://lh5.googleusercontent.com/S6G3lu-ZuaGxCqioP2OQcDwQDtAhcFxCpixa4q92jv2QE1t4folg48lBYSkogysUCq9N1TKOfo3-9gOz1j4uAXaXuKnuFK89ECaWfcsYatwwWXrUJlFI2WgHEPVukLV_c7bYYcnOZd2IEVNBmqIvU2M" style="width: 198.00px; height: 216.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c5 c9"><span class="c0"></span></p><p class="c5"><span class="c0">This setup leads to a 4-5 stack. The player may follow up with a fourth bag Mechanical TSD or DT Cannon: </span></p><p class="c11"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 198.00px; height: 270.00px;"><img alt="" src="https://lh3.googleusercontent.com/k8QocOa0ytq3DbxKaLS37uWpuoFJvGUVfBzyLDS4ynv4xUclc1dZGq_I2uWKiFlHOS4-wHEQYq-ewrfQsqYFlaxT7p-NMFCwMkfB-Hpo_WeNshP96hpNXGAjT9q8s1VWiKaor0inuxd9mEH0S8AGuPY" style="width: 198.00px; height: 270.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><hr style="page-break-before:always;display:none;"><p class="c5 c9"><span class="c0"></span></p><h1 class="c5 c14" id="h.drrigaogx2rr"><span class="c2">Route 2 Third Bag </span></h1><p class="c5 c9"><span class="c0"></span></p><p class="c5"><span class="c0">If the player chose to take the second route, the will be left with this residue: </span></p><p class="c5 c9"><span class="c0"></span></p><p class="c11"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 180.00px;"><img alt="" src="https://lh3.googleusercontent.com/INJ23T6gUFRf1Hjb5JoL7dFeMd1N6iy6etOcFNdeMRRezq2tDZC0ngQ7iqeOiSlOXVep687befJ_J2l7vMOohTcr4qtbWqT4lVApYTALBfs-lxF4ZdO1gE7BAYlf582VcedTqv7rN8htisNVVwUwVEM" style="width: 220.00px; height: 180.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c5"><span class="c1">This shape has a 98.57% PC chance, with </span><span class="c1 c4">24 minimals</span><span class="c0">. These solutions aren’t as straightforward as Route 1 but are still generally easy. </span></p><p class="c5 c9"><span class="c0"></span></p><p class="c5"><span class="c0">If the Perfect Clear isn’t possible, there are a range of continuations. However, note that the overstacked left side makes downstacking much harder, so it’s better to just freestyle. Generally, Route 2 is better for Blitz/Ultra runs since it is much more difficult to continue if there’s no PC. </span></p><p class="c5 c9"><span class="c0"></span></p><p class="c5"><span class="c0">This TSD setup is the most flexible. </span></p><p class="c11"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 240.00px;"><img alt="" src="https://lh6.googleusercontent.com/LJsGyuiQJF63AeVh-sbVeVWbMSno2DcKCJ7P8LQLyRoxZtRWdivne_q9sV5KRwxfu9y7tjLdGxRiaWq16oRBPWLxNZiIx2CxnoQ-cy-UDihE_DxAAZ12d-7-dANzwRiYN4dy5yMQF2qwuLzHoIuXmOY" style="width: 220.00px; height: 240.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c5"><span class="c0">There’s also a few more greedier setups: </span></p><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 143.62px; height: 156.55px;"><img alt="" src="https://lh6.googleusercontent.com/qpvOdhA25vpbvnCnuVo9opoWxGJUjDJP01DGWHW-yWP_ws41TRl3ett0k3WuW24bDbWStb0i672Afrcj36JBMO8Pic5oye6JAN_Rb0BiyMtOkk2rqRQcXNHpWN5MYBuOEGaoYdD3Tza1NsPxndzgIG0" style="width: 143.62px; height: 156.55px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 143.62px; height: 156.51px;"><img alt="" src="https://lh3.googleusercontent.com/Ck0YeigpfBlMUFQnJpcx-BymIq1gJLiR9MB3zv3eots6rM6sQPxyrwBQr1DYzbtTNJlhCDvy9dpbYGUAdGV3uhf4Xz6sQjqGT-YDo0CrePxJKGXz1sktU5aDk9CemWrNfukuog7Uhx4WnpJlDGADqG0" style="width: 143.62px; height: 156.51px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 143.62px; height: 156.51px;"><img alt="" src="https://lh3.googleusercontent.com/eoyyKSw4iPNk9X1wuJifdGNivFj65iATodzXVYJ3p0FgrqXDCOmrzuR1Y19PeJ_PLm8dwZh9VlGIqn_pE3wtgrDIiadNohKnOY5mj1tyM_wollVuvfL0BQkQjJ0JD4Z_5-gI8sCjzXpZ6R6BtGAwpas" style="width: 143.62px; height: 156.51px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 143.62px; height: 156.34px;"><img alt="" src="https://lh5.googleusercontent.com/qTwwDzO7DeXIqMfQMGnr0qkSW4WW34_Fsb0NgvLUWu4kx6mP45EIYkMinelWOdFXbJjk0UnypM-EyF30wSEKFec0f28BjrQaZc8HzyEvp5U_wdLzNpcfIiAc39zfB1YSIlparPCBvGEnSC4dDQwphNM" style="width: 143.62px; height: 156.34px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c5"><span class="c1">The last two need pieces from bag 4 and so are </span><span class="c1 c23">not</span><span class="c1"> recommended. </span><hr style="page-break-before:always;display:none;"></p><p class="c5 c9"><span class="c0"></span></p><h1 class="c5 c14" id="h.z7sqlczbzhup"><span class="c2">Notes </span></h1><ul class="c3 lst-kix_bkh1ty46hevs-0 start"><li class="c5 c8 li-bullet-0"><span class="c0">While I independently discovered this opener, I was not the first to find it, so I probably do not really have the right to give this opener a name. </span></li><li class="c5 c8 li-bullet-0"><span class="c1 c20">The name “Mountainous Stacking 4” was used because of the resemblance of the opener’s first bag to Mountainous Stacking 3.</span><span class="c0"> Never mind, new name - 9% Cannon </span></li></ul><ul class="c3 lst-kix_bkh1ty46hevs-1 start"><li class="c5 c18 li-bullet-0"><span class="c0">However, all of the sources I uncovered gave the name “A gun that can only be compromised by subtracting 1/11” (which effectively means “1/11 compromise chance cannon”). 1/11 = 9.09090909090909…%</span></li><li class="c5 c18 li-bullet-0"><span class="c0">They also didn’t specify any PC solutions that I could see. </span></li></ul><ul class="c3 lst-kix_bkh1ty46hevs-0"><li class="c5 c8 li-bullet-0"><span class="c0">If anyone finds some other continuations feel free to send me a fumen and I’ll give you credit. </span></li><li class="c5 c8 li-bullet-0"><span class="c0">Also yes the linked fumen has the wrong colour for Z dont judge </span></li></ul><p class="c5 c9"><span class="c0"></span></p><h1 class="c5 c14" id="h.2184ubv9ce31"><span class="c2">References </span></h1><p class="c5"><span class="c1 c4"><a class="c13" href="https://www.google.com/url?q=https://w.atwiki.jp/tetrismaps/pages/435.html&amp;sa=D&amp;source=editors&amp;ust=1693214907071271&amp;usg=AOvVaw0t7SrJbbXa2l2gZb_4qeyE">https://w.atwiki.jp/tetrismaps/pages/435.html</a></span></p><p class="c5"><span class="c1 c4"><a class="c13" href="https://www.google.com/url?q=https://w.atwiki.jp/sioyakitetrisopener/pages/126.html&amp;sa=D&amp;source=editors&amp;ust=1693214907071637&amp;usg=AOvVaw2DSHxy83v6VWj2Myl77Lgt">https://w.atwiki.jp/sioyakitetrisopener/pages/126.html</a></span></p><p class="c5"><span class="c1 c4"><a class="c13" href="https://www.google.com/url?q=https://w.atwiki.jp/tdattack/pages/36.html&amp;sa=D&amp;source=editors&amp;ust=1693214907071941&amp;usg=AOvVaw232VoO_CyG3BKiM6dPsUqv">https://w.atwiki.jp/tdattack/pages/36.html</a></span></p></div></div></body></html>
