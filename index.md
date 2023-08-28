@@ -1,0 +1,22 @@
+# FLYSPECK SCRIPTOR SATUS BIBLIOTHECA
+
+## Openers I Invented 
+
+Staircase Stacking SD 
+Zaptor Stacking SD 
+Zudo Stacking TD 
+Lawn Mower MD 
+LoveBowl Cannon MD  
+Radio Special TST 
+Viaduct SD 
+Cradle Stacking TST
+[Sublime Stacking](./sublime) TST
+
+## Openers I Independently Discovered 
+
+[9% Cannon](./nine) TD 
+
+## Openers I Did Not Discover But Contributed To/Are Cool 
+
+YouMech MD  
+Toothpaste Cone SD 
