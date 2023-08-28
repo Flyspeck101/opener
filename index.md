@@ -1,3 +1,5 @@
+<head><link rel="shortcut icon" href="favicon.ico"></head>
+
 # FLYSPECK SCRIPTOR SATUS BIBLIOTHECA
 
 ## Openers I Invented 
