@@ -16,13 +16,15 @@ Radio Special TST
 
 Viaduct SD 
 
-Cradle Stacking TST
+[Cradle Stacking](./cradle) TST
 
 [Sublime Stacking](./sublime) TST
 
 ## Openers I Independently Discovered 
 
 [9% Cannon](./nine) TD 
+
+[DkDPC](./dkdpc) Dk
 
 ## Openers I Did Not Discover But Contributed To/Are Cool 
 
