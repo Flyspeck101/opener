@@ -20,6 +20,8 @@ Viaduct SD
 
 [Sublime Stacking](./sublime) TST
 
+[Rake Stacking](./rake/) TST
+
 ## Openers I Independently Discovered 
 
 [9% Cannon](./nine) TD 
@@ -31,6 +33,8 @@ Viaduct SD
 YouMech MD 
 
 Toothpaste Cone SD 
+
+[Sillyspin](./silly/) TST 
 
 <script>
     window.onload = function() {
