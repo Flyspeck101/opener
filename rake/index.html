@@ -1,195 +1,200 @@
 
-<!DOCTYPE html><html><head><title>Rake Stacking</title><link rel="shortcut icon" href="../favicon.ico"><meta name="referrer" content="strict-origin-when-cross-origin"><script nonce="y0vul9PnLihh1Dkyk574hA">
-    var DOCS_timing = {};
-    var DOCS_drawing_load = {};
-    var DOCS_drawing_decode = {};
+<!DOCTYPE html><html><head><title>Rake Stacking</title><link rel="shortcut icon" href="https://ssl.gstatic.com/docs/documents/images/kix-favicon8.ico"><meta name="referrer" content="strict-origin-when-cross-origin"><script nonce="6xDr6OUhcx1W4xlaGDCYCQ">
+        var DOCS_timing = {};
+        var DOCS_drawing_load = {};
+        var DOCS_drawing_decode = {};
 
-    function _DOCS_record_fn(id) {
-      if (window.performance && window.performance.now) {
-        DOCS_drawing_load[id] = performance.now();
-        const imgEl = document.getElementById(id);
-        if (imgEl && imgEl.decode) {
-          imgEl.decode().then(() => DOCS_drawing_decode[id] = performance.now());
+        function _DOCS_record_fn(id) {
+          if (window.performance && window.performance.now) {
+            DOCS_drawing_load[id] = performance.now();
+            const imgEl = document.getElementById(id);
+            if (imgEl && imgEl.decode) {
+              imgEl.decode().then(() => {
+                DOCS_drawing_decode[id] = performance.now();
+                if (typeof DOCS_notifyDrawingDecode === 'function') {
+                  DOCS_notifyDrawingDecode(id);
+                }
+              });
+            }
+          }
+
+          if (typeof DOCS_notifyDrawingLoad === 'function') {
+            DOCS_notifyDrawingLoad(id);
+          }
+        }
+
+        function DOCS_record_drawing_load(id) {
+          const imgEl = document.getElementById(id);
+          if (imgEl.complete) {
+            _DOCS_record_fn(id);
+          }
+          imgEl.onload = function() {
+            _DOCS_record_fn(id);
+          }
+        }
+
+        document.documentElement.addEventListener(
+          'load',
+          function(event) {
+            if (!event || !event.target) {
+              return;
+            }
+            const target = event.target;
+
+            if (target.tagName == 'IMG' &&  target.id && target.id.startsWith('ed.')) {
+              DOCS_record_drawing_load(target.id);
+            }
+          },
+          // Captures load events in the DOM because they do not bubble.
+          /* useCapture= */ true
+        );
+      </script><style nonce="75Rs36lAlHSJwYLNetq_lA">
+      @import url("https://fonts.googleapis.com/css?family=Google+Sans");
+      @import url("https://fonts.googleapis.com/css?family=Roboto");
+
+      body {
+        font-family: Roboto, arial, sans, sans-serif;
+        margin: 0;
+      }
+
+      iframe {
+        border: 0;
+        frameborder: 0;
+        height: 100%;
+        width: 100%;
+      }
+
+      #banners {
+        align-items: center;
+        background: white;
+        display: block;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+      }
+
+      #banners #publish-banner {
+        background-color: #e8f0fe;
+        border-bottom: 1px #ccc solid;
+        color: #202124;
+        display: flex;
+        flex: 1 1 0%;
+        height: 60px;
+        width: 100%;
+      }
+
+      #publish-banner-icon {
+        display: flex;
+        fill: #1967d2;
+        margin: auto 20px;
+      }
+
+      #publish-banner-text {
+        flex-grow: 1;
+        margin: auto 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      #publish-banner-buttons {
+        margin: auto 25px auto 0;
+        white-space: nowrap;
+      }
+
+      #publish-banner-buttons span {
+        align-self: center;
+        background-color: inherit;
+        border: none;
+        font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+        margin: 0 16px 0 32px;
+      }
+
+      #publish-banner-buttons a {
+        color: #1967d2;
+        cursor: pointer;
+        font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 24px;
+        text-decoration: none;
+      }
+
+      #banners #title-banner {
+        background: white;
+        border-bottom: 1px #ccc solid;
+        display: flex;
+        flex: 1 1 0%;
+        height: 60px;
+        width: 100%;
+      }
+
+      #banners #title-banner #title {
+        flex-grow: 1;
+        font-family: 'Google Sans';
+        font-size: large;
+        margin: auto 0 auto 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 70%;
+      }
+
+      #banners #title-banner #interval {
+        margin: auto 25px auto 0;
+        font-family: Roboto;
+        font-size: small;;
+      }
+
+      #footer {
+        background: #f0f0f0;
+        border-bottom: 1px #ccc solid;
+        bottom: 0;
+        font-family: Roboto;
+        font-size: small;
+        padding: 10px 10px;
+        position: fixed;
+        text-align: center;
+        width: 100%;
+      }
+
+      @media only screen and (max-device-width: 800px) {
+        #banners #title-banner {
+          border-bottom-width: 5px;
+          height: auto;
+          display: block;
+        }
+
+        #banners #title-banner #title {
+          font-size: 3em;
+          margin: auto 0 auto 20px;
+          width: 90%;
+        }
+
+        #banners #title-banner #interval {
+          font-size: 1.5em;
+          margin: 10px 0 auto 25px;
+        }
+
+        #footer {
+          font-size: 2em;
         }
       }
 
-      if (typeof DOCS_notifyDrawingImpressions === 'function') {
-        DOCS_notifyDrawingImpressions(id);
+      .dash {
+        padding: 0 6px;
       }
-    }
 
-    function DOCS_record_drawing_load(id) {
-      const imgEl = document.getElementById(id);
-      if (imgEl.complete) {
-        _DOCS_record_fn(id);
-      }
-      imgEl.onload = function() {
-        _DOCS_record_fn(id);
-      }
-    }
-
-    document.documentElement.addEventListener(
-      'load',
-      function(event) {
-        if (!event || !event.target) {
-          return;
+    
+        #contents {
+          padding: 100px 20% 50px 20%;
         }
-        const target = event.target;
 
-        if (target.tagName == 'IMG' &&  target.id && target.id.startsWith('ed.')) {
-          DOCS_record_drawing_load(target.id);
+        @media only screen and (max-device-width: 800px) {
+          #contents {
+            padding: 150px 5% 80px;
+          }
         }
-      },
-      // Captures load events in the DOM because they do not bubble.
-      /* useCapture= */ true
-    );
-  </script><style nonce="9CJv7JSs8N3bNq5w7kL67Q">
-  @import url("https://fonts.googleapis.com/css?family=Google+Sans");
-  @import url("https://fonts.googleapis.com/css?family=Roboto");
-
-  body {
-    font-family: Roboto, arial, sans, sans-serif;
-    margin: 0;
-    background-color:#36393f;
-  }
-
-  iframe {
-    border: 0;
-    height: 100%;
-    width: 100%;
-  }
-
-  #banners {
-    align-items: center;
-    background: white;
-    display: block;
-    justify-content: space-between;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 100;
-  }
-
-  #banners #publish-banner {
-    background-color: #e8f0fe;
-    border-bottom: 1px #ccc solid;
-    color: #202124;
-    display: flex;
-    flex: 1 1 0%;
-    height: 60px;
-    width: 100%;
-  }
-
-  #publish-banner-icon {
-    display: flex;
-    fill: #1967d2;
-    margin: auto 20px;
-  }
-
-  #publish-banner-text {
-    flex-grow: 1;
-    margin: auto 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  #publish-banner-buttons {
-    margin: auto 25px auto 0;
-    white-space: nowrap;
-  }
-
-  #publish-banner-buttons span {
-    align-self: center;
-    background-color: inherit;
-    border: none;
-    font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
-    margin: 0 16px 0 32px;
-  }
-
-  #publish-banner-buttons a {
-    color: #1967d2;
-    cursor: pointer;
-    font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    text-decoration: none;
-  }
-
-  #banners #title-banner {
-    background: white;
-    border-bottom: 1px #ccc solid;
-    display: flex;
-    flex: 1 1 0%;
-    height: 60px;
-    width: 100%;
-  }
-
-  #banners #title-banner #title {
-    flex-grow: 1;
-    font-family: 'Google Sans';
-    font-size: large;
-    margin: auto 0 auto 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 70%;
-  }
-
-  #banners #title-banner #interval {
-    margin: auto 25px auto 0;
-    font-family: Roboto;
-    font-size: small;;
-  }
-
-  #footer {
-    background: #f0f0f0;
-    border-bottom: 1px #ccc solid;
-    bottom: 0;
-    font-family: Roboto;
-    font-size: small;
-    padding: 10px 10px;
-    position: fixed;
-    text-align: center;
-    width: 100%;
-  }
-
-  @media only screen and (max-device-width: 800px) {
-    #banners #title-banner {
-      border-bottom-width: 5px;
-      height: auto;
-      display: block;
-    }
-
-    #banners #title-banner #title {
-      font-size: 3em;
-      margin: auto 0 auto 20px;
-      width: 90%;
-    }
-
-    #banners #title-banner #interval {
-      font-size: 1.5em;
-      margin: 10px 0 auto 25px;
-    }
-
-    #footer {
-      font-size: 2em;
-    }
-  }
-
-  .dash {
-    padding: 0 6px;
-  }
-
-
-    #contents {
-      padding: 0px 20% 50px 20%;
-    }
-
-    @media only screen and (max-device-width: 800px) {
-      #contents {
-        padding: 150px 5% 80px;
-      }
-    }
-  </style></head><body><div id="contents"><style type="text/css">@import url(https://themes.googleusercontent.com/fonts/css?kit=-lTUqgJg2dxbe4D7B5DEIA3jn2WilaVUapNOYl4762s);.lst-kix_rhzv05trc0t6-0>li:before{content:"-  "}.lst-kix_rhzv05trc0t6-3>li:before{content:"-  "}.lst-kix_rhzv05trc0t6-2>li:before{content:"-  "}.lst-kix_rhzv05trc0t6-1>li:before{content:"-  "}ul.lst-kix_rhzv05trc0t6-7{list-style-type:none}ul.lst-kix_rhzv05trc0t6-8{list-style-type:none}ul.lst-kix_rhzv05trc0t6-5{list-style-type:none}ul.lst-kix_rhzv05trc0t6-6{list-style-type:none}.lst-kix_pyofw0hd6q40-3>li:before{content:"-  "}ul.lst-kix_rhzv05trc0t6-0{list-style-type:none}.lst-kix_pyofw0hd6q40-1>li:before{content:"-  "}.lst-kix_pyofw0hd6q40-2>li:before{content:"-  "}ul.lst-kix_rhzv05trc0t6-3{list-style-type:none}ul.lst-kix_rhzv05trc0t6-4{list-style-type:none}.lst-kix_pyofw0hd6q40-0>li:before{content:"-  "}ul.lst-kix_rhzv05trc0t6-1{list-style-type:none}ul.lst-kix_rhzv05trc0t6-2{list-style-type:none}ul.lst-kix_pyofw0hd6q40-5{list-style-type:none}ul.lst-kix_pyofw0hd6q40-6{list-style-type:none}ul.lst-kix_pyofw0hd6q40-7{list-style-type:none}ul.lst-kix_pyofw0hd6q40-8{list-style-type:none}.lst-kix_pyofw0hd6q40-4>li:before{content:"-  "}li.li-bullet-0:before{margin-left:-18pt;white-space:nowrap;display:inline-block;min-width:18pt}.lst-kix_rhzv05trc0t6-7>li:before{content:"-  "}.lst-kix_pyofw0hd6q40-5>li:before{content:"-  "}.lst-kix_pyofw0hd6q40-6>li:before{content:"-  "}.lst-kix_rhzv05trc0t6-6>li:before{content:"-  "}.lst-kix_rhzv05trc0t6-8>li:before{content:"-  "}.lst-kix_pyofw0hd6q40-7>li:before{content:"-  "}ul.lst-kix_pyofw0hd6q40-1{list-style-type:none}ul.lst-kix_pyofw0hd6q40-2{list-style-type:none}.lst-kix_rhzv05trc0t6-4>li:before{content:"-  "}ul.lst-kix_pyofw0hd6q40-3{list-style-type:none}ul.lst-kix_pyofw0hd6q40-4{list-style-type:none}.lst-kix_rhzv05trc0t6-5>li:before{content:"-  "}.lst-kix_pyofw0hd6q40-8>li:before{content:"-  "}ul.lst-kix_pyofw0hd6q40-0{list-style-type:none}ol{margin:0;padding:0}table td,table th{padding:0}.c14{color:#ffffff;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:16pt;font-family:"Montserrat";font-style:normal}.c12{color:#ffffff;font-weight:700;text-decoration:none;vertical-align:baseline;font-size:20pt;font-family:"Montserrat";font-style:normal}.c9{padding-top:18pt;padding-bottom:6pt;line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}.c0{padding-top:0pt;padding-bottom:0pt;line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}.c3{color:#ffffff;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:12pt;font-family:"Montserrat";font-style:normal}.c18{font-weight:700;text-decoration:none;vertical-align:baseline;font-size:24pt;font-family:"Montserrat";font-style:normal}.c5{font-weight:400;text-decoration:none;vertical-align:baseline;font-size:12pt;font-family:"Montserrat";font-style:normal}.c19{font-weight:700;text-decoration:none;vertical-align:baseline;font-size:20pt;font-family:"Montserrat";font-style:normal}.c7{font-weight:700;text-decoration:none;vertical-align:baseline;font-size:16pt;font-family:"Montserrat";font-style:normal}.c6{padding-top:0pt;padding-bottom:0pt;line-height:1.15;orphans:2;widows:2;text-align:left}.c1{padding-top:0pt;padding-bottom:0pt;line-height:1.15;orphans:2;widows:2;text-align:center}.c16{background-color:#36393f;max-width:451.4pt;padding:72pt 72pt 72pt 72pt}.c10{text-decoration-skip-ink:none;-webkit-text-decoration-skip:none;text-decoration:underline}.c2{color:inherit;text-decoration:inherit}.c13{padding:0;margin:0}.c11{margin-left:36pt;padding-left:0pt}.c17{font-size:16pt;font-weight:700}.c15{page-break-after:avoid}.c4{color:#f3f3f3}.c8{height:12pt}.title{padding-top:0pt;color:#ffffff;font-weight:700;font-size:24pt;padding-bottom:0pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:center}.subtitle{padding-top:0pt;color:#666666;font-size:15pt;padding-bottom:16pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}li{color:#ffffff;font-size:12pt;font-family:"Montserrat"}p{margin:0;color:#ffffff;font-size:12pt;font-family:"Montserrat"}h1{padding-top:0pt;color:#ffffff;font-weight:700;font-size:20pt;padding-bottom:0pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h2{padding-top:18pt;color:#ffffff;font-size:16pt;padding-bottom:6pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h3{padding-top:16pt;color:#434343;font-size:14pt;padding-bottom:4pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h4{padding-top:14pt;color:#666666;font-size:12pt;padding-bottom:4pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h5{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h6{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;font-style:italic;orphans:2;widows:2;text-align:left}</style><div class="c16 doc-content"><p class="c1 c15 title" id="h.hq91exq85u82"><span class="c4 c18">Rake Stacking </span></p><p class="c1"><span class="c4 c17">By Flyspeck101</span></p><p class="c1 c8"><span class="c5 c4"></span></p><p class="c1"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 148.31px; height: 148.31px;"><img alt="" src="https://lh3.googleusercontent.com/tpu7xexODB6cpM7vNaO5305jR9lTECAqJOfhuYZcUC4TZavwaX7glwaxi8l8DPHy4ZMVJknCq3FNkTHA6EjJwmuWRMk76bWF8eA2pYBiZhi5r8pA081cUgIYOelwe3HIWss4TPhN6wemoJ0RVCort3U" style="width: 148.31px; height: 148.31px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c6"><span class="c5 c4">Rake Stacking is a double TST opener. It was made by me in early July 2023. This document assumes Jstris/TETR.IO 180s. </span></p><p class="c6 c8"><span class="c5 c4"></span></p><h1 class="c0" id="h.2u05wkmsp14d"><span class="c4 c19">Bag 1 </span></h1><p class="c1"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 176.00px;"><img alt="" src="https://lh3.googleusercontent.com/RkTmHGLoKL5DlG290zkuEkOrRuDyRbK8LIuYGZDnS2t7prEKdDOqiOPiIcN3tHonPC8bjEZYBo8rMgi5Rmcbh9sVCEZZ02jK0FBNu97ONAcA8pBqu52AWz7DbwWLUfDAp9kEA4XaJHwl3my5Hwl8CsU" style="width: 220.00px; height: 176.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span><span class="c4">                        </span><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 176.00px;"><img alt="" src="https://lh5.googleusercontent.com/R8LmEjM9WpNWH6bFh2FEthSdTBaoYer2kUuBg41TKTj6nK_9iMnS9kulFdnx52wP13XSZPpb30NlIlfE0AWS5lO_Jg4538vllUvyxSNvNoQDIAItEd9ysRNQKzI5eZ4jaEfcokRsq4ivmZVNFlWrytg" style="width: 220.00px; height: 176.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c6 c8"><span class="c5 c4"></span></p><p class="c6"><span class="c5 c4">In bag 1, the O is usually held until the S has been placed. There are two ways to build the first bag, with JTI being interchangeable. The cover for the first bag is 60.87% with mirror. </span></p><p class="c6 c8"><span class="c5 c4"></span></p><h1 class="c0" id="h.pe4odflrqjt2"><span class="c12">Bag 2 </span></h1><p class="c1"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 220.00px;"><img alt="" src="https://lh5.googleusercontent.com/jMVRlgKw6YN3er2oWDUIfZSQb0_PBn-Wf31Wj9Xp4u_NoA-V4ljw9yKAkbbnP-5HY0Nq-3c8I80iIUo2i4L17I8Y5kqvSnLd6uxlT9PYZ-akTcXoSR4Dw8u_ILWxwsVIQOq1zF-RP92h3xC5URBe90g" style="width: 220.00px; height: 220.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c6 c8"><span class="c3"></span></p><p class="c6"><span class="c3">The second bag is 100%. Some difficult kicks may be needed to place the L piece: </span></p><p class="c1"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 220.00px;"><img alt="" src="https://lh3.googleusercontent.com/AnIScTsQt0nP1j4sTK0abAxJCge8aMQpPpJY-tgPAvwy5HPXpECsCRXiEpyKTz3ldjZzE9Pzqlx8EHCfV9g-81yu--hxAsDPYkdHcNbhqRooREOLzyz-_FdrzEteYM7g5W4BD-ramqMHwG9v-_uBfhM" style="width: 220.00px; height: 220.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span><span>                        </span><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 220.00px;"><img alt="" src="https://lh5.googleusercontent.com/ycTXzCBoPJNcApoIStiDtMDOUB-MtG368CekCM_meC1KqmRqpRg7rLFUXBfntFotBjSKWdxfU-NlTVksBeqdyQXbFtumIh4JUYZrlUxPDTdBJ55WMdZmEeNIRj4RMbgiQ8umPquAA9ZS07q8CfnlhAk" style="width: 220.00px; height: 220.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c1 c8"><span class="c3"></span></p><h1 class="c0" id="h.5zw3qzxlxtux"><span class="c12">Bag 3 </span></h1><p class="c1"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 198.00px;"><img alt="" src="https://lh4.googleusercontent.com/y4YA75bbVSbX88obzfMHZLd36JA7XBe_l25Jq2_SJGltbM53YomtgdeI8Vqa7Um-8QcDFRUcq69BhXXnx-DU15p9XDa_vU7PHnLpzaWKCCQdKd5nPMTFdyIz7VHI1D1748GlaLGk6oNfQfBZDb7R9do" style="width: 220.00px; height: 198.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c6 c8"><span class="c3"></span></p><p class="c6"><span class="c3">The third bag is 100%. </span></p><p class="c6 c8"><span class="c3"></span></p><h1 class="c0" id="h.6c15w35u0v0"><span class="c12">Bag 4+ </span></h1><p class="c1 c2"><span class="c7"></span></p><p class="c1"><span class="c7">After the third bag there are multiple routes you can take. </span></p><h2 class="c4 c3" id="h.w4ad0gwqg83n"><span class="c8">14L PC </span></h2><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 198.00px;"><img alt="" src="https://lh7-us.googleusercontent.com/7lX7VD7a8kz0rVxT_4Vjv-_iCrz__LP8xhuxLNBx1DkV5N3yrzbDxwRWjcPRhbq0Kv7m3TRZLtYouDGIiE8hsMsl18WK5NSzMko35FxUmAVzJLOCVPGYz4J_HGHuRagZ7xA1sjvcyd4lXH65_3CzuDA" style="width: 220.00px; height: 198.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c1 c2"><span class="c7"></span></p><p class="c1"><span>The residue has a 100% chance of a Perfect Clear, with only </span><span class="c9"><a class="c12" href="https://www.google.com/url?q=https://tinyurl.com/yqrbe2vc&amp;sa=D&amp;source=editors&amp;ust=1698364127480725&amp;usg=AOvVaw15gnLnhFf0VYLdDwPXwpaq">6 minimals</a></span><span>. Note that T is fixed. </span></p><h2 class="c4 c3" id="h.zbf4pxaj3u92"><span class="c8">TSM Kaidan </span></h2><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 198.00px;"><img alt="" src="https://lh7-us.googleusercontent.com/PpQnn61uaZmor9UhV1Gii4kINXH-ZjT3ys8Zp2VsNjKz67J3p7tcggCF2g9SNsqOEFIhgdTZemOMplipgHg2zQa_mYEv2wf8fYlaGMw5vd-8jzTVPSJHxr5spmvhh09_8Kp1Vpkw6qFcomeeAlWNUlw" style="width: 220.00px; height: 198.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c1 c2"><span class="c7"></span></p><p class="c1"><span class="c7">You can always stack this TSM. The residue is very good and you can easilly do a Kaidan. </span></p><h2 class="c3 c4" id="h.gsf52klydjdr"><span class="c8">Dulse Flame </span></h2><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 176.00px;"><img alt="" src="https://lh7-us.googleusercontent.com/Xonb4jP5tBJZTxaSP9D0kbs0zEdeIv4R5P9tPDYDfv7eomg2Q0NDdbqjNPR0FrkWO7IHY9nKmNfahmzcK2n7-vHrERcxh-KBsYu4fww3ICQsAGafMvdCicaRFwq9QQx9VXHfBLYzpcRjquiEdUaTmo0" style="width: 220.00px; height: 176.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c1 c2"><span class="c6"></span></p><p class="c1"><span class="c6">This setup is not 100%. If S and Z have been placed the L cannot be spun in. After completing the TSD you can always follow up with a TD. </span></p><p class="c1 c2"><span class="c6"></span></p><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 220.00px;"><img alt="" src="https://lh7-us.googleusercontent.com/EAYkav4YNuNYHWHLDZzQcA1lGXwjiCPpY-430-QyzpUkIwmpDgI695rqDQKcke0EJKkKCkggSUPdF0U6T3n3Cfw1ZnF2cpv3V-elTr0mPymxzED6z280Dpxz1Y9EelUhfiJ6jFyShYnxz4A9PGh9PXg" style="width: 220.00px; height: 220.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><h1 class="c1 c3" id="h.9wulz3nkb6kt"><span class="c10">Notes </span></h1><ul class="c18 lst-kix_pyofw0hd6q40-0 start"><li class="c1 c11 li-bullet-0"><span class="c9 c15"><a class="c12" href="https://www.google.com/url?q=https://discord.com/channels/917764042351837184/931216764245774446/1128591092149911623&amp;sa=D&amp;source=editors&amp;ust=1698364127481545&amp;usg=AOvVaw1NjC6SaAXE7OPvdzeWYpwi">First mention of this opener in Nakamura&#39;s C</a></span><span class="c9"><a class="c12" href="https://www.google.com/url?q=https://discord.com/channels/917764042351837184/931216764245774446/1128591092149911623&amp;sa=D&amp;source=editors&amp;ust=1698364127481646&amp;usg=AOvVaw2XSq3StaI_u3srAC80pqsA">Opener Gaming</a></span><span class="c7"> </span></li><li class="c1 c11 li-bullet-0"><span>This opener is 100% first bag cover with seac’s </span><span class="c9"><a class="c12" href="../silly">Sillyspin</a></span><span>. </span></li></ul></div></div></body></html>
+      </style></head><body><div id="contents"><style type="text/css">@import url(https://themes.googleusercontent.com/fonts/css?kit=-lTUqgJg2dxbe4D7B5DEIA3jn2WilaVUapNOYl4762s);.lst-kix_rhzv05trc0t6-0>li:before{content:"-  "}.lst-kix_rhzv05trc0t6-3>li:before{content:"-  "}.lst-kix_rhzv05trc0t6-2>li:before{content:"-  "}.lst-kix_rhzv05trc0t6-1>li:before{content:"-  "}ul.lst-kix_rhzv05trc0t6-7{list-style-type:none}ul.lst-kix_rhzv05trc0t6-8{list-style-type:none}ul.lst-kix_rhzv05trc0t6-5{list-style-type:none}ul.lst-kix_rhzv05trc0t6-6{list-style-type:none}.lst-kix_pyofw0hd6q40-3>li:before{content:"-  "}ul.lst-kix_rhzv05trc0t6-0{list-style-type:none}.lst-kix_pyofw0hd6q40-1>li:before{content:"-  "}.lst-kix_pyofw0hd6q40-2>li:before{content:"-  "}ul.lst-kix_rhzv05trc0t6-3{list-style-type:none}ul.lst-kix_rhzv05trc0t6-4{list-style-type:none}.lst-kix_pyofw0hd6q40-0>li:before{content:"-  "}ul.lst-kix_rhzv05trc0t6-1{list-style-type:none}ul.lst-kix_rhzv05trc0t6-2{list-style-type:none}ul.lst-kix_pyofw0hd6q40-5{list-style-type:none}ul.lst-kix_pyofw0hd6q40-6{list-style-type:none}ul.lst-kix_pyofw0hd6q40-7{list-style-type:none}ul.lst-kix_pyofw0hd6q40-8{list-style-type:none}.lst-kix_pyofw0hd6q40-4>li:before{content:"-  "}li.li-bullet-0:before{margin-left:-18pt;white-space:nowrap;display:inline-block;min-width:18pt}.lst-kix_rhzv05trc0t6-7>li:before{content:"-  "}.lst-kix_pyofw0hd6q40-5>li:before{content:"-  "}.lst-kix_pyofw0hd6q40-6>li:before{content:"-  "}.lst-kix_rhzv05trc0t6-6>li:before{content:"-  "}.lst-kix_rhzv05trc0t6-8>li:before{content:"-  "}.lst-kix_pyofw0hd6q40-7>li:before{content:"-  "}ul.lst-kix_pyofw0hd6q40-1{list-style-type:none}ul.lst-kix_pyofw0hd6q40-2{list-style-type:none}.lst-kix_rhzv05trc0t6-4>li:before{content:"-  "}ul.lst-kix_pyofw0hd6q40-3{list-style-type:none}ul.lst-kix_pyofw0hd6q40-4{list-style-type:none}.lst-kix_rhzv05trc0t6-5>li:before{content:"-  "}.lst-kix_pyofw0hd6q40-8>li:before{content:"-  "}ul.lst-kix_pyofw0hd6q40-0{list-style-type:none}ol{margin:0;padding:0}table td,table th{padding:0}.c0{color:#f3f3f3;font-weight:700;text-decoration:none;vertical-align:baseline;font-size:20pt;font-family:"Montserrat";font-style:normal}.c10{color:#ffffff;font-weight:700;text-decoration:none;vertical-align:baseline;font-size:20pt;font-family:"Montserrat";font-style:normal}.c14{color:#f3f3f3;font-weight:700;text-decoration:none;vertical-align:baseline;font-size:24pt;font-family:"Montserrat";font-style:normal}.c7{color:#ffffff;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:12pt;font-family:"Montserrat";font-style:normal}.c8{color:#ffffff;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:16pt;font-family:"Montserrat";font-style:normal}.c6{color:#f3f3f3;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:12pt;font-family:"Montserrat";font-style:normal}.c1{padding-top:0pt;padding-bottom:0pt;line-height:1.15;orphans:2;widows:2;text-align:left}.c4{padding-top:18pt;padding-bottom:6pt;line-height:1.15;orphans:2;widows:2;text-align:left}.c5{padding-top:0pt;padding-bottom:0pt;line-height:1.15;orphans:2;widows:2;text-align:center}.c17{text-decoration:none;vertical-align:baseline;font-family:"Montserrat";font-style:normal}.c16{background-color:#36393f;max-width:451.4pt;padding:72pt 72pt 72pt 72pt}.c13{font-size:16pt;color:#f3f3f3;font-weight:700}.c9{text-decoration-skip-ink:none;-webkit-text-decoration-skip:none;text-decoration:underline}.c11{margin-left:36pt;padding-left:0pt}.c18{padding:0;margin:0}.c12{color:inherit;text-decoration:inherit}.c2{height:12pt}.c15{color:#f3f3f3}.c3{page-break-after:avoid}.title{padding-top:0pt;color:#ffffff;font-weight:700;font-size:24pt;padding-bottom:0pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:center}.subtitle{padding-top:0pt;color:#666666;font-size:15pt;padding-bottom:16pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}li{color:#ffffff;font-size:12pt;font-family:"Montserrat"}p{margin:0;color:#ffffff;font-size:12pt;font-family:"Montserrat"}h1{padding-top:0pt;color:#ffffff;font-weight:700;font-size:20pt;padding-bottom:0pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h2{padding-top:18pt;color:#ffffff;font-size:16pt;padding-bottom:6pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h3{padding-top:16pt;color:#434343;font-size:14pt;padding-bottom:4pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h4{padding-top:14pt;color:#666666;font-size:12pt;padding-bottom:4pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h5{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h6{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;font-style:italic;orphans:2;widows:2;text-align:left}</style><div class="c16 doc-content"><p class="c3 c5 title" id="h.hq91exq85u82"><span class="c14">Rake Stacking </span></p><p class="c5"><span class="c13">By Flyspeck101</span></p><p class="c5 c2"><span class="c6"></span></p><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 148.31px; height: 148.31px;"><img alt="" src="https://lh7-us.googleusercontent.com/UjYld6vyMTI9ZWnU0exmOsT-fLolL9lDlMQhqQ5bi1lBsXvG72BiVSdErXXqxxSNkXMlbq5uqzjhZxEDr7dtfN4TeMSjyxZ0cLAmb333PgmRZtUYQF3zTOs0DMDATy6N85wFccOlWP7ZAQ1MrkjBpN4" style="width: 148.31px; height: 148.31px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c1"><span class="c6">Rake Stacking is a double TST opener. It was made by me in early July 2023. This document assumes Jstris/TETR.IO 180s. </span></p><p class="c1 c2"><span class="c6"></span></p><h1 class="c1 c3" id="h.2u05wkmsp14d"><span class="c0">Bag 1 </span></h1><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 176.00px;"><img alt="" src="https://lh7-us.googleusercontent.com/j7yIhkttED9BbjB5jpR1y-DvY7ZoRIOvsl3MwUbsgI6P0ASVQIqsG18-K7_ZzI9z9WEZ2oU_Olm-C4kJcctLXJ25Z3gDWNN18LrbyBBA7_dehKYAkMXIYaLFALq5L18Q2W-ab9_ejxs9SYNxlwgwQcY" style="width: 220.00px; height: 176.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span><span class="c15">                        </span><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 176.00px;"><img alt="" src="https://lh7-us.googleusercontent.com/pqIQoSjS0p9iQJJXxbmcrFq81KlQ5cPGG3g0z4EAClKztvBDtj0nbwBCzHP12UZBJ5DGWaM9zq6uqqgZt3rtTjvmTPMNOKJis6nEtslDbHGaOnsvQlch7v16VZB5geuD_qoSKkdJIosTYNgAVkSCj2s" style="width: 220.00px; height: 176.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c1 c2"><span class="c6"></span></p><p class="c1"><span class="c6">In bag 1, the O is usually held until the S has been placed. There are two ways to build the first bag, with JTI being interchangeable. The cover for the first bag is 60.87% with mirror. </span></p><p class="c1 c2"><span class="c6"></span></p><h1 class="c1 c3" id="h.pe4odflrqjt2"><span class="c10">Bag 2 </span></h1><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 220.00px;"><img alt="" src="https://lh7-us.googleusercontent.com/bC-I-UELB-x0_xc6UE3PCZBomcstQ-GvfVJPq5QIpo10ugeYJ_2AIPcVD8djskppeQ4kyn7AwSmojDDCUHbvkxdRe0x3AJxeta-tLbFgHrqNXk8lNzfe1ABtsbgf883HEImA6RXU-kNNcHVUgZItjA4" style="width: 220.00px; height: 220.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c1 c2"><span class="c7"></span></p><p class="c1"><span class="c7">The second bag is 100%. Some difficult kicks may be needed to place the L piece: </span></p><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 220.00px;"><img alt="" src="https://lh7-us.googleusercontent.com/DVikk7HX7jOTnfnsw-5lYFNNmPoQODFl64FfU4hEq1sdajbqW85acb3QGXm6XtzB4VsqRH6oQ_XzzBOxKj5iVuMT5e6o-BGQZcJvRgCsP4iOSI3B3q-Ufkv95OdGaPqZwXkZnCdJ6xDFP7N61GofWQQ" style="width: 220.00px; height: 220.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span><span>                        </span><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 220.00px;"><img alt="" src="https://lh7-us.googleusercontent.com/pmq6RBJzrvkHaJMNGDrDLan6BiK-9sg9WzTzJyx-InP679_wxl_E_mh3DlekJUCXzBk5ZuvtAg7_iKEgywv7vSXEpAKD-H8DVQtnxFFCPYRND2zyVhPgzzieHMM-tWR8X7WUjxeuCwfyY7h_I61dx_4" style="width: 220.00px; height: 220.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c5 c2"><span class="c7"></span></p><h1 class="c1 c3" id="h.5zw3qzxlxtux"><span class="c10">Bag 3 </span></h1><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 198.00px;"><img alt="" src="https://lh7-us.googleusercontent.com/A4eUGLp79pW5x_FY_xmtcCU_6yY7EiVPzOhreLXbNFwhKXEmHxjhNROygJtBGxCBaRj_-QfqpKindH7roVMY_fNzS7_I6z2WsSHeJlAwSeID70SzxCLbdpu9EzeSM92qDTWMZpPaaC2J6cJGCQMqCk8" style="width: 220.00px; height: 198.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c1 c2"><span class="c7"></span></p><p class="c1"><span class="c7">The third bag is 100%. </span></p><p class="c1 c2"><span class="c7"></span></p><h1 class="c1 c3" id="h.6c15w35u0v0"><span class="c10">Bag 4+ </span></h1><p class="c1 c2"><span class="c7"></span></p><p class="c1"><span class="c7">After the third bag there are multiple routes you can take. </span></p><h2 class="c4 c3" id="h.w4ad0gwqg83n"><span class="c8">14L PC </span></h2><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 198.00px;"><img alt="" src="https://lh7-us.googleusercontent.com/7lX7VD7a8kz0rVxT_4Vjv-_iCrz__LP8xhuxLNBx1DkV5N3yrzbDxwRWjcPRhbq0Kv7m3TRZLtYouDGIiE8hsMsl18WK5NSzMko35FxUmAVzJLOCVPGYz4J_HGHuRagZ7xA1sjvcyd4lXH65_3CzuDA" style="width: 220.00px; height: 198.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c1 c2"><span class="c7"></span></p><p class="c1"><span>The residue has a 100% chance of a Perfect Clear, with only </span><span class="c9"><a class="c12" href="https://www.google.com/url?q=https://tinyurl.com/yqrbe2vc&amp;sa=D&amp;source=editors&amp;ust=1698364127480725&amp;usg=AOvVaw15gnLnhFf0VYLdDwPXwpaq">6 minimals</a></span><span>. Note that T is fixed. </span></p><h2 class="c4 c3" id="h.zbf4pxaj3u92"><span class="c8">TSM Kaidan </span></h2><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 198.00px;"><img alt="" src="https://lh7-us.googleusercontent.com/PpQnn61uaZmor9UhV1Gii4kINXH-ZjT3ys8Zp2VsNjKz67J3p7tcggCF2g9SNsqOEFIhgdTZemOMplipgHg2zQa_mYEv2wf8fYlaGMw5vd-8jzTVPSJHxr5spmvhh09_8Kp1Vpkw6qFcomeeAlWNUlw" style="width: 220.00px; height: 198.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c1 c2"><span class="c7"></span></p><p class="c1"><span class="c7">You can always stack this TSM. The residue is very good and you can easilly do a Kaidan. </span></p><h2 class="c3 c4" id="h.gsf52klydjdr"><span class="c8">Dulse Flame </span></h2><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 176.00px;"><img alt="" src="https://lh7-us.googleusercontent.com/Xonb4jP5tBJZTxaSP9D0kbs0zEdeIv4R5P9tPDYDfv7eomg2Q0NDdbqjNPR0FrkWO7IHY9nKmNfahmzcK2n7-vHrERcxh-KBsYu4fww3ICQsAGafMvdCicaRFwq9QQx9VXHfBLYzpcRjquiEdUaTmo0" style="width: 220.00px; height: 176.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><p class="c1 c2"><span class="c6"></span></p><p class="c1"><span class="c6">This setup is not 100%. If S and Z have been placed the L cannot be spun in. After completing the TSD you can always follow up with a TD. </span></p><p class="c1 c2"><span class="c6"></span></p><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 220.00px; height: 220.00px;"><img alt="" src="https://lh7-us.googleusercontent.com/EAYkav4YNuNYHWHLDZzQcA1lGXwjiCPpY-430-QyzpUkIwmpDgI695rqDQKcke0EJKkKCkggSUPdF0U6T3n3Cfw1ZnF2cpv3V-elTr0mPymxzED6z280Dpxz1Y9EelUhfiJ6jFyShYnxz4A9PGh9PXg" style="width: 220.00px; height: 220.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p><h1 class="c1 c3" id="h.9wulz3nkb6kt"><span class="c10">Notes </span></h1><ul class="c18 lst-kix_pyofw0hd6q40-0 start"><li class="c1 c11 li-bullet-0"><span class="c9 c15"><a class="c12" href="https://www.google.com/url?q=https://discord.com/channels/917764042351837184/931216764245774446/1128591092149911623&amp;sa=D&amp;source=editors&amp;ust=1698364127481545&amp;usg=AOvVaw1NjC6SaAXE7OPvdzeWYpwi">First mention of this opener in Nakamura&#39;s C</a></span><span class="c9"><a class="c12" href="https://www.google.com/url?q=https://discord.com/channels/917764042351837184/931216764245774446/1128591092149911623&amp;sa=D&amp;source=editors&amp;ust=1698364127481646&amp;usg=AOvVaw2XSq3StaI_u3srAC80pqsA">Opener Gaming</a></span><span class="c7"> </span></li><li class="c1 c11 li-bullet-0"><span>This opener is 100% first bag cover with seac’s </span><span class="c9"><a class="c12" href="../silly">Sillyspin</a></span><span>. </span></li></ul></div></div></body></html>
